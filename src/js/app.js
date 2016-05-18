@@ -8,6 +8,13 @@ var Link = ReactRouter.Link;
 var IndexRoute = ReactRouter.IndexRoute;
 var browserHistory = ReactRouter.browserHistory;
 
+var HomePage = require('./components/HomePage');
+var Order = require('./components/Order');
+var Choices = require('./components/Choices');
+var Custom = require('./components/Custom');
+var Confirmation = require('./components/Confirmation');
+
+
 // A simple navigation component
 var Navigation = React.createClass({
   render: function() {
@@ -15,13 +22,7 @@ var Navigation = React.createClass({
       <nav className="main-menu">
         <ul>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About Us</Link>
-          </li>
-          <li>
-            <Link to="/team">Meet the team</Link>
+            <Link className="navHome" to="/">Home</Link>
           </li>
         </ul>
       </nav>
@@ -42,42 +43,6 @@ var App = React.createClass({
   }
 });
 
-// home "page"
-var Home = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h1>Homepage!</h1>
-        <p>Welcome to the homepage! Try to click on a link in the nav, then click the browser back button.</p>
-      </div>
-    );
-  }
-});
-
-// about "page"
-var About = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h1>About Page!</h1>
-        <p>Welcome to the about page!</p>
-      </div>
-    );
-  }
-});
-
-// team "page"
-var Team = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <h1>Meet the team!</h1>
-        <p>Welcome to the team page!</p>
-      </div>
-    );
-  }
-});
-
 // not found "page"
 var NotFound = React.createClass({
   render: function() {
@@ -86,6 +51,7 @@ var NotFound = React.createClass({
     );
   }
 });
+
 
 /*
 The routes. This section says:
@@ -103,9 +69,11 @@ by simply nesting `Route` components.
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="about" component={About}/>
-      <Route path="team" component={Team}/>
+      <IndexRoute component={HomePage}/>
+      <Route path="order" component={Order}/>
+      <Route path="choices" component={Choices}/>
+      <Route path="custom" component={Custom}/>
+      <Route path="confirmation" component={Confirmation}/>
       <Route path="*" component={NotFound}/>
     </Route>
   </Router>
